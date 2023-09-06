@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: CT Criteria Parser
-  description: The Clinical Trial Criteria Parser meticulously extracts and analyzes eligibility criteria from clinical trial records sourced from ClinicalTrials.gov. This application identifies and categorizes key medical terms and patient demographics from the inclusion and exclusion criteria. This aids in providing a clear, concise, and structured overview of the trial's participant requirements, facilitating easier understanding and navigation of clinical trial eligibility. An example input could be "nctid NCT05859269".
+  title: CT Parser
+  description: The Clinical Trial Parser meticulously extracts and analyzes data from clinical trial records sourced from ClinicalTrials.gov. This application identifies and categorizes the conditions and outcomes being studied by each trial. This is derived by examining the title of the trial, a description of the study, a list of conditions (which are supposed to be but may not be the main diseases that are being studied, sometimes the entered data doesn't indicate the exact condition being studied), and primary and secondary outcomes that are being studied. An example input could be "nctid NCT05859269".
   version: "v1"
 servers:
   - url: http://localhost:5003
@@ -9,7 +9,7 @@ paths:
   /trial/{trialID}:
     get:
       operationId: getTrial
-      summary: Get eligibility criteria from clinical trial
+      summary: Get the title of the trial, a description of the study, a list of conditions (which are supposed to be but may not be the main diseases that are being studied, sometimes the entered data doesn't indicate the exact condition being studied), and primary and secondary outcomes that are being studied.
       parameters:
         - in: path
           name: trialID
@@ -33,4 +33,4 @@ components:
           type: array
           items:
             type: string
-          description: The list of criterias.
+          description: An object containing the title of the trial, a description of the trial, a list of conditions (which are supposed to be but may not be the main diseases that are being studied, sometimes the entered data doesn't indicate the exact condition being studied), and primary and secondary outcomes that are being studied.

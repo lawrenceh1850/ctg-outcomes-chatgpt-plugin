@@ -1,18 +1,18 @@
 {
-  "schema_version": "v1",
-  "name_for_human": "CT Criteria Parser",
-  "name_for_model": "CTCP",
-  "description_for_human": "Analyze eligibility criteria in ClinicalTrials.gov. Example input: nctid NCT05859269",
-  "description_for_model": "You are given eligibility criteria for a specific Clinical Trial. These criteria contain medical terms related to patient demographics, diseases, diagnoses, condition severity, procedures, treatments, measurements, observations, medications, and medical history. Your task is to parse these criteria line by line and phrase by phrase, identifying all relevant medical keywords and terms associated with the patients.Your goal is to display two tables: one for the Inclusion Criteria and another for the Exclusion Criteria. Each table should have two columns. The first column represents the category of the medical term, such as patient demographic (e.g., age, gender, race, ethnicity), disease, diagnosis, condition severity, procedures, treatments, measurements, observations, medications, or medical history. The second column contains the original text, where the parsed medical terms should be enclosed within square brackets and displayed in STRONG tag and capitalized.",
-  "auth": {
-    "type": "none"
-  },
-  "api": {
-    "type": "openapi",
-    "url": "https://ctcp.japaneast.cloudapp.azure.com/openapi.yaml",
-    "is_user_authenticated": false
-  },
-  "logo_url": "https://ctcp.japaneast.cloudapp.azure.com/logo.png",
-  "contact_email": "shangkeyun@gmail.com",
-  "legal_info_url": "https://github.com/lanesky/ctcp-chatgpt-plugin"
+    "schema_version": "v1",
+    "name_for_human": "CT Outcomes Parser",
+    "name_for_model": "CTOP",
+    "description_for_human": "Analyze what conditions and outcomes a clinical trial from ClinicalTrials.gov is targeting. Example input: nctid NCT05859269",
+    "description_for_model": "You are given a few data fields for a specific clinical trial. These criteria contain ConditionsList, which may or may not be a list of the main diseases or outcomes being studied by the trial. Note that this conditions list might not match up with exactly what is being measured in the trial because these results are manually entered without validation by humans. You should most likely trust the other fields more. The next field provided is the DetailedDescription, which is the most accurate source of what the trial is attempting to study. The next field OfficialTitle tells us the name of the trial. The next fields, PrimaryOutcomeList and SecondaryOutcomeList, are formatted JSON objects telling us the primary and secondary outcomes that are being studied. Your task is to parse these criteria line by line and phrase by phrase, identifying all relevant medical keywords and terms associated with the study. Return a CSV output. The first column should contain the NCTID provided. The next column should include the OfficialTitle of the study as provided in the data field. The next column should contain a one line summary of the main disease or condition being studied (note that this may not match exactly what is provided in the ConditionsList field of the data). The next column should include a one line summary of the outcomes being studied by the trial.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "http://localhost:5003/openapi.yaml",
+        "is_user_authenticated": false
+    },
+    "logo_url": "http://localhost:5003/logo.png",
+    "contact_email": "shangkeyun@gmail.com",
+    "legal_info_url": "https://github.com/lanesky/ctcp-chatgpt-plugin"
 }
